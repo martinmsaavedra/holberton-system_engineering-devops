@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f - iname *.gif -i -printf '\n' | sort
+find . -type f -iname *.gif -size c -printf '\n' | sort
