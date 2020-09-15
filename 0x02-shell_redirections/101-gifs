@@ -1,3 +1,2 @@
 #!/bin/bash
-find . -type f -iname *.gif -printf '\n' | cut -d . -f 1 | sort -h k2
-
+find . -type f -iname *.gif -printf '\n' | cut -d . -f 1 | sort -f
