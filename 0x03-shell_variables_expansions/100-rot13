@@ -1,0 +1,3 @@
+#!/bin/bash
+cat quote | tr '[A-Za-z]' '[N-ZA-Mn-za-m]' | cut -f 1 tr '[A-Za-z]' '[N-ZA-Mn-za-m]' | printf '%s\n'
+ 
