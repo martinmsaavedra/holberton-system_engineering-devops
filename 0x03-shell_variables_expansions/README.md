@@ -1,4 +1,4 @@
-#Shell inits files, variables and expansions tasks:
+# Shell inits files, variables and expansions tasks:
 
 ## 0. <o>.
   Create a script that creates an alias.
