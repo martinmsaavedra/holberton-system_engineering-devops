@@ -9,10 +9,10 @@ while [ $x -lt 10 ]
 do
   if [ $x -eq 3 ]
     then
-      echo "Bad luck"
+      echo "bad luck"
   elif [ $x -eq 7 ]
     then
-      echo "Good luck"
+      echo "good luck"
   else
     echo "Holberton School"
   fi
