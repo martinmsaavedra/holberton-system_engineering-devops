@@ -5,9 +5,7 @@
 #   In a list format
 #   Where only the part of the name after the first dash is displayed
 
-list=$(ls)
-
-for i in $list; 
+for list in *
 do
-  echo "$i" | cut -d '-' -f2
+  echo "$list" | cut -d '-' -f2
 done
