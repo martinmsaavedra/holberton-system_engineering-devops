@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#script performs variety of things
+
+tmp_file="/var/run/holbertonscript.pid"
+echo $$ > $tmp_file
+while "true"
+do
+    echo "To infinity and beyond"
+    sleep 2
+    trap 'echo "Y U no love me?!"' SIGINT
+    trap 'echo "I hate the kill command"' SIGTERM
+    trap 'rm $tmp_file; exit' SIGTERM SIGQUIT
+done
