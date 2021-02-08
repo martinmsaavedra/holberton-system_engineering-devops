@@ -17,7 +17,7 @@ case $1 in
     ;;
 
 "restart")
-    kill "$(pgrep -f ./manage_my_process)" > /dev/null
+    kill "$(pgrep -f ./manage_my_process)"
     rm $TMP_FILE
     ./manage_my_process &
     echo "$!" > $TMP_FILE
