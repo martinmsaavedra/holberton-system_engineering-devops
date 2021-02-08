@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# displays To infinity and beyond indefinitely.
+
+while "true"
+do
+    echo "To infinity and beyond" >> /tmp/my_process
+    sleep 2
+done
