@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 # stop process
-msg="I am invincible!!!"
 
 while "true"
 do
     echo "To infinity and beyond"
     sleep 2
-    trap "echo $msg" SIGTERM
+    trap 'echo I am invincible!!!' SIGTERM
 done
