@@ -34,6 +34,7 @@ file {'default':
     ensure  => 'present',    
 }
 
-exec { 'service_restart':
-  command => 'service nginx restart',
+service {'nginx':
+  ensure  => running,
+  require => Package['nginx'],
 }
