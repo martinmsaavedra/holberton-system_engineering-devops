@@ -20,21 +20,6 @@ file { '404.html':
   content => 'Ceci n\'est pas une page',
 }
 
-file {'default':
-    path     => '/etc/nginx/sites-available/default',
-    content  => 'listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html index.htm;
-    redirect ^/redirect_me/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-    error_page 404 /404.html;
-    location /404 {
-      root /etc/nginx/html;
-      internal;
-    }',
-    ensure  => 'present',    
-}
-
 service {'nginx':
   ensure  => running,
   require => Package['nginx'],
