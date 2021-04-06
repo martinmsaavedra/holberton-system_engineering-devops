@@ -8,7 +8,7 @@ package { 'nginx':
 file { 'index.html':
   ensure  => 'present',
   path    => '/etc/nginx/html/index.html',
-  content => 'Holberton School\n',
+  content => 'Holberton School',
 }
 
 file_line { 'setup':
