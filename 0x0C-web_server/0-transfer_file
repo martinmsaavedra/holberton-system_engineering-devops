@@ -4,7 +4,7 @@ FILE=$1
 IP=$2
 USERNAME=$3
 PATH=$4
-if [ $# -eq 4 ]
+if [[ $# -eq 4 ]]
 then
         scp -o StrictHostKeyChecking=no "$FILE" "$USERNAME"@"$IP":"$PATH"
 else
