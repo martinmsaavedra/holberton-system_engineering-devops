@@ -14,7 +14,7 @@ file_line { 'setup':
   ensure => present,
   path   => '/etc/nginx/sites-available/default',
   after  => '[::80]:80 default_server;'
-  line   => 'rewrite ^/redirect_me/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
+  line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
 }
 
 service {'nginx':
