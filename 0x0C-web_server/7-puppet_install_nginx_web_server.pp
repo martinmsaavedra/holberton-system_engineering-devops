@@ -1,24 +1,26 @@
 #  Install Nginx web serve
 exec { 'apt-get_update':
-  command => 'apt-get update',
+  command => 'apt-get update -y',
 }
 
 package { 'nginx':
   provider => 'apt-get',
-  ensure   => 'installed',
+  ensure   => 'present',
+  name     => 'nginx',
 }
 
 file { 'index.html':
   ensure  => 'present',
-  path    => '/etc/nginx/html',
-  content => 'Holberton School',
+  path    => '/etc/nginx/html/index.html',
+  content => 'Holberton School\n',
 }
 
-file { '404.html':
-  ensure  => 'present',
-  path    => '/etc/nginx/html',
-  content => 'Ceci n\'est pas une page',
-}
+file_line { 'setup':
+  path   => '/etc/nginx/sites-available/default',
+  ensure => 'present',
+  after  => '[::80]:80 default_server;'
+  line   => 'rewrite ^/redirect_me/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent';,
+
 
 service {'nginx':
   ensure  => running,
