@@ -5,7 +5,6 @@ apt-get -y upgrade
 apt-get -y install nginx
 service nginx start
 echo "Holberton School" | tee /usr/share/nginx/html/index.html
-echo "Ceci n'est pas une page" | tee /usr/share/nginx/html/404.html
 echo "Holberton School" | tee /etc/nginx/html/index.html
 echo "Ceci n'est pas une page" | tee /etc/nginx/html/404.html
 printf %s "server {
