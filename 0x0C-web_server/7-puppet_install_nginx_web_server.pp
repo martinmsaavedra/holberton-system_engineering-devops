@@ -1,8 +1,4 @@
 #  Install Nginx web serve
-exec { 'apt-get_update':
-  command => 'apt-get update -y',
-}
-
 package { 'nginx':
   provider => 'apt-get',
   ensure   => 'present',
