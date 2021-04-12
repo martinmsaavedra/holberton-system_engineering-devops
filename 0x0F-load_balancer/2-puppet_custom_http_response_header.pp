@@ -23,7 +23,7 @@ file_line { 'new_header':
   require => Package['nginx'],
 }
 
-file { '/var/www/html/index.html':
+file { '/etc/nginx/html/www/index.html':
   content => 'Holberton School',
   require => Package['nginx'],
 }
