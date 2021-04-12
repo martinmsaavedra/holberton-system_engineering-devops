@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #install load balacer
-
-sudo apt-get install haproxy -y
+apt-get update
+apt-get install haproxy=1.6.\*
 echo "ENABLED=1" >> /etc/default/haproxy
 mv /etc/haproxy/haproxy.cfg{,.original}
 touch /etc/haproxy/haproxy.cfg
