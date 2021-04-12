@@ -1,4 +1,4 @@
-# Puppet manifest to create server and add custom header
+# Puppet manifest to setup a server and adding custom header
 exec { 'update':
   command => '/usr/bin/apt-get update',
 }
