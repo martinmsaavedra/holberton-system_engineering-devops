@@ -1,35 +1,25 @@
-# Puppet manifest to setup a server and adding custom header
+# Creating a custom Header HTTP with Puppet
+
 exec { 'update':
-  command => '/usr/bin/apt-get update',
+  command => 'sudo apt-get update',
+  path    => ['/usr/bin', '/bin'],
 }
 
 package { 'nginx':
-  ensure => installed,
+  ensure  => installed,
+  require => Exec['update'],
 }
 
-file_line { 'redirect_line':
-  ensure  => 'present',
+file_line { 'custom_header':
+  ensure  => present,
   path    => '/etc/nginx/sites-available/default',
   after   => 'listen 80 default_server;',
-  line    => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
+  line    => "add_header X-Served-By ${hostname};",
   require => Package['nginx'],
 }
 
-file_line { 'new_header':
-  ensure  => 'present',
-  path    => '/etc/nginx/sites-available/default',
-  after   => 'listen 80 default_server;',
-  line    => 'add_header X-Served-By $hostname;',
-  require => Package['nginx'],
-}
-
-file { '/etc/nginx/html/www/index.html':
-  content => 'Holberton School',
-  require => Package['nginx'],
-}
-
-service { 'nginx':
-  ensure  => running,
-  enable  => true,
-  require => Package['nginx'],
+exec { 'restart':
+  command => 'sudo service nginx restart',
+  path    => ['/usr/bin', '/bin'],
+  require => File_line['custom_header'],
 }
