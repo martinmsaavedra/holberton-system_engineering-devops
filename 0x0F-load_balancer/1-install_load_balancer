@@ -22,7 +22,7 @@ defaults
     timeout client  10000
     timeout server  10000
 
-listen appname 0.0.0.0:80
+backend web-backend
     mode http
     stats enable
     stats uri /haproxy?stats
@@ -32,6 +32,12 @@ listen appname 0.0.0.0:80
     option forwardfor
     server 2089-web-01 35.231.45.150:80 check
     server 2089-web-02 34.74.42.82:80 check
+
+frontend http
+    bind *:80
+    mode http
+    default_backend web-backend
+
 "" >> /etc/haproxy/haproxy.cfg
 
 service haproxy start
