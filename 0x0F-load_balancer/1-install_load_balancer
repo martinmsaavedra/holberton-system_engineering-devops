@@ -2,34 +2,10 @@
 #install load balacer
 apt-get update
 apt-get install haproxy=1.6.\*
-echo "ENABLED=1" >> /etc/default/haproxy
-mv /etc/haproxy/haproxy.cfg{,.original}
-touch /etc/haproxy/haproxy.cfg
-printf %s "global
-    log 127.0.0.1 local0 notice
-    maxconn 2000
-    user haproxy
-    group haproxy
-
-defaults
-    log     global
-    mode    http
-    option  httplog
-    option  dontlognull
-    retries 3
-    option redispatch
-    timeout connect  5000
-    timeout client  10000
-    timeout server  10000
-
+printf %s "
 backend web-backend
     mode http
-    stats enable
-    stats uri /haproxy?stats
-    stats realm Strictly\ Private
     balance roundrobin
-    option httpclose
-    option forwardfor
     server 2089-web-01 35.231.45.150:80 check
     server 2089-web-02 34.74.42.82:80 check
 
@@ -40,4 +16,4 @@ frontend http
 
 " >> /etc/haproxy/haproxy.cfg
 
-service haproxy restart
+service haproxy start
