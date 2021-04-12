@@ -2,18 +2,18 @@
 #install load balacer
 apt-get update
 apt-get install haproxy=1.6.\*
-printf %s "
-backend web-backend
-    mode http
+echo "ENABLED=1" >> /etc/default/haproxy
+cp /etc/haproxy/haproxy.cfg /etc/haproxy/original.cfg
+echo "
+frontend front
+    bind *:80
+    default_backend backend-web
+
+backend backend-web
     balance roundrobin
     server 2089-web-01 35.231.45.150:80 check
     server 2089-web-02 34.74.42.82:80 check
 
-frontend http
-    bind *:80
-    mode http
-    default_backend web-backend
-
 " >> /etc/haproxy/haproxy.cfg
 
-service haproxy start
+service haproxy restart
