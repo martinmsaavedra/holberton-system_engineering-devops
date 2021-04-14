@@ -2,4 +2,4 @@
 # Nginx likes port 80
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 service nginx restart
-rm -f /var/run/lighttpd.pid
+rm -f /run/nginx.pid
