@@ -14,16 +14,14 @@ resultado () {
     echo "$1 $answer" | awk '{print "The subdomain " $1 " is a " $2 " record and points to " $3}'
 }
 
-if [ "$subdomain" ] 
-then
-    resultado "$subdomain"
-    exit 
-fi
-
-if [ "$domain" ]
+if [ "$#" == 1 ]
 then 
     resultado www
     resultado lb-01
     resultado web-01
     resultado web-02
+fi
+if [ "$#" == 2 ]
+then 
+    resultado "$subdomain"
 fi
