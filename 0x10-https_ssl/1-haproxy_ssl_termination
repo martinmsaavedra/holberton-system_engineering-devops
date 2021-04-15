@@ -1,6 +1,6 @@
 global
     log 127.0.0.1 local0 notice
-    maxconn 2000
+    maxconn 2048
     user haproxy
     group haproxy
 
@@ -17,17 +17,21 @@ defaults
 
 frontend http
     bind *:80
-    bind *:443  crt /etc/letsencrypt/csr/0000_csr-certbot.pem
-    mode http
+    reqadd X-Forwarded-Proto:\ http
+    default_backend app_pool
+
+frontend https
+    bind *:443 ssl crt /etc/haproxy/certs/www.martinsaavedra.tech.pem
+    reqadd X-Forwarded-Proto:\ https
+    acl    letsencrypt-acl path_beg /.well-known/acme-challenge/
+    use_backend letsencrypt-backend if letsencrypt-acl
     default_backend app_pool
 
 backend app_pool
-    mode http
-    stats enable
-    stats uri /haproxy?stats
-    stats realm Strictly\ Private
     balance roundrobin
-    option httpclose
-    option forwardfor
+    redirect scheme https if !{ ssl_fc }
     server 2089-web-01 35.231.45.150:80 check
     server 2089-web-02 34.74.42.82:80 check
+
+backend letsencrypt-backend
+    server letsencrypt 127.0.0.1:54321
