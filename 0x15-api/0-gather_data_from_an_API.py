@@ -21,6 +21,6 @@ if __name__ == "__main__":
         if status:
             done_tasks += 1
             text += "\t {}\n".format(task.get('title'))
-    print("Employee {} is done with tasks({}/{})".format(name,
+    print("Employee {} is done with tasks({}/{}):".format(name,
           done_tasks, number_of_tasks))
     print(text, end="")
