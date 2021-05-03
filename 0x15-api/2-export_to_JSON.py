@@ -7,7 +7,8 @@ from sys import argv
 
 if __name__ == "__main__":
     user = argv[1]
-    x = r.get('https://jsonplaceholder.typicode.com/users/{}/todos'.format(user))
+    x = r.get('https://jsonplaceholder.typicode.com/users/{}/todos'
+              .format(user))
     y = r.get('https://jsonplaceholder.typicode.com/users/{}'.format(user))
     json_obj_todo = x.json()
     json_ob_user = y.json()
