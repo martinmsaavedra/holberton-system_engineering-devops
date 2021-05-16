@@ -1,7 +1,7 @@
 <img src="meme.jpg" alt="API meme">
 
 # Title: Incident with Yahoo Finance API API meme
----
+
 ## SUMMARY:
 Incident date: On Saturday 15 of May, at 03:15 AM GMT-3, users alert us that the service becomes inaccessible and incapable of retrieves data selected.
 The incident impacted a whole web application, and the service was down 1 hour until it was reestablished.
