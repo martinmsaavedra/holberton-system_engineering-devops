@@ -11,7 +11,8 @@ def top_ten(subreddit):
     x = r.get('https://www.reddit.com/r/{}/top.json'
               .format(subreddit), headers=headers, params=payload)
     if x.status_code == 404:
-        return 0
+        print("None")
+        return
     response = x.json().get('data').get('children')
     for data in response:
         title = data.get('data').get('title')
